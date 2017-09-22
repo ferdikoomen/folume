@@ -13,9 +13,9 @@ The first thing to know is that 3D printers don't understand 3D models, instead 
 2. 3D printing is a very very slow process. Even printing a simple lamp shade would take around 30-45 minutes. This makes debugging your tool a bit of a pain in the ass. 
 
 ## Examples
-<img src="examples/print-details.png" alt="Print details" width="486">
 <img src="examples/print-light-off.png" alt="Light on" width="800">
 <img src="examples/print-light-on.png" alt="Light off" width="800">
+<img src="examples/print-details.png" alt="Print details" width="800">
 <img src="examples/screenshot-design-mode.png" alt="GUI design mode" width="696">
 <img src="examples/screenshot-print-mode.png" alt="GUI print mode" width="696">
 
