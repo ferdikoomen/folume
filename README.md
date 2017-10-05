@@ -6,7 +6,7 @@ A while ago I wanted to learn more about 3D printing and bought a [Ultimaker 2](
 
 Instead of learning a new design tool, I wanted to build something that allowed me to understand the details of 3D printing. Something that could make/generate a simple design and send that directly to the printer without any abstraction layer or interpretation. To keep things simple I decided to stick to a basic mathematical shape and lo and behold: The idea behind this *"cylindrical lamp shade design tool"* was born.
 
-The first thing to know is that 3D printers don't understand 3D models, instead they need to be converted (sliced) to a format or 'language' called called [G-code](http://reprap.org/wiki/G-code). This G-code tells the printer __exactly__ what to do and when to do it. So I created an application in [Processing](https://processing.org) that can generate a design, output it as G-Code and send that to the printer via USB. Working with this G-Code directly allowed me to learn all the settings like temperature, acceleration, feed-rate, retraction, etc. 
+The first thing to know is that 3D printers don't understand 3D models, instead they need to be converted (sliced) to a format or "language" called called [G-code](http://reprap.org/wiki/G-code). This G-code tells the printer __exactly__ what to do and when to do it. So I created an application in [Processing](https://processing.org) that can generate a design, output it as G-Code and send that to the printer via USB. Working with this G-Code directly allowed me to learn all the settings like temperature, acceleration, feed-rate, retraction, etc. 
 
 **Results:**
 1. We now have some nice [lamp shades](examples/print-light-off.png) for our home.
