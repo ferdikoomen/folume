@@ -379,7 +379,7 @@ final public class DesignControlCurve
 		pg.beginDraw();
 		pg.translate((float) posX, (float) posY);
 		shape.getCurveInside().draw(pg, 0xFF0099FF, 0xFF1A6697, SCALE);
-		shape.getCurveOutside().draw(pg, 0xFFff0066, 0xFF9A194b, SCALE);
+		shape.getCurveOutside().draw(pg, 0xFFFF0044, 0xFF9A194b, SCALE);
 		pg.endDraw();
 	}
 

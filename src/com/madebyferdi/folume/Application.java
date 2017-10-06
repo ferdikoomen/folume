@@ -29,7 +29,9 @@ final public class Application extends PApplet
 	public void settings()
 	{
 		size(Style.WIDTH, Style.HEIGHT, PConstants.P2D);
-	}
+		pixelDensity(displayDensity());
+		smooth(4);
+    }
 
 
 	public void setup()

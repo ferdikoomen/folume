@@ -1,10 +1,10 @@
 package com.madebyferdi.folume;
 
 
+import com.madebyferdi.folume.controlP5.GuiContainer;
 import com.madebyferdi.folume.controlP5.GuiButton;
 import com.madebyferdi.folume.settings.Style;
 import com.madebyferdi.folume.utils.Gui;
-import controlP5.ControlP5;
 import processing.core.PImage;
 
 
@@ -13,7 +13,7 @@ final public class ApplicationView
 
 	// Properties
 	private Application app;
-	private ControlP5 cp5;
+	private GuiContainer cp5;
 	private PImage img;
 	private GuiButton toggle;
 
@@ -24,17 +24,18 @@ final public class ApplicationView
 		this.app = app;
 
 		// Load logo
-		img = app.loadImage("data/logo.png");
+		img = app.loadImage("data/logo@" + this.app.displayDensity() + "x.png");
+		img.pixelDensity = this.app.displayDensity();
 
 		// Create GUI layer
-		cp5 = new ControlP5(app);
+		cp5 = new GuiContainer(app);
 		cp5.setAutoDraw(false);
 
 		// Create buttons
 		toggle = Gui.createButton(cp5, false, "PRINT MODE", Style.WIDTH - 120, 20, 100, 30);
 		toggle.setColorActive(0xFFFF0044);
 		toggle.setColorForeground(0xFFFF0044);
-		toggle.setColorBackground(0xFFDD0033);
+		toggle.setColorBackground(0xFFFF0044);
 	}
 
 

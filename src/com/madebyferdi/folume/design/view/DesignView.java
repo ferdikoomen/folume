@@ -2,11 +2,11 @@ package com.madebyferdi.folume.design.view;
 
 
 import com.madebyferdi.folume.Application;
+import com.madebyferdi.folume.controlP5.GuiContainer;
 import com.madebyferdi.folume.design.view.controls.*;
 import com.madebyferdi.folume.design.view.preview.DesignPreview;
 import com.madebyferdi.folume.settings.Style;
 import com.madebyferdi.folume.shape.Shape;
-import controlP5.ControlP5;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
@@ -16,8 +16,7 @@ final public class DesignView
 
 	// Properties
 	private Application app;
-	private Shape shape;
-	private ControlP5 cp5;
+	private GuiContainer cp5;
 	private PGraphics pg;
 	private DesignControlSize controlSize;
 	private DesignControlRadius controlRadius;
@@ -33,10 +32,9 @@ final public class DesignView
 	{
 		// Store references
 		this.app = app;
-		this.shape = shape;
 
 		// Create GUI layer
-		cp5 = new ControlP5(app);
+		cp5 = new GuiContainer(app);
 		cp5.setAutoDraw(false);
 
 		// Create parts

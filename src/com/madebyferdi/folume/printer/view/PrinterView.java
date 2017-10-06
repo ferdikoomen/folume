@@ -2,6 +2,7 @@ package com.madebyferdi.folume.printer.view;
 
 
 import com.madebyferdi.folume.Application;
+import com.madebyferdi.folume.controlP5.GuiContainer;
 import com.madebyferdi.folume.printer.view.controls.*;
 import com.madebyferdi.folume.printer.view.graphs.PrinterGraphAcceleration;
 import com.madebyferdi.folume.printer.view.graphs.PrinterGraphHistory;
@@ -10,8 +11,6 @@ import com.madebyferdi.folume.printer.view.graphs.PrinterGraphPreview;
 import com.madebyferdi.folume.settings.Style;
 import com.madebyferdi.folume.shape.Shape;
 import com.madebyferdi.folume.ultimaker.Ultimaker;
-import com.madebyferdi.folume.ultimaker.hardware.UltimakerHardware;
-import controlP5.ControlP5;
 import processing.core.PConstants;
 import processing.core.PGraphics;
 
@@ -21,10 +20,7 @@ final public class PrinterView
 
 	// Properties
 	private Application app;
-	private Shape shape;
-	private Ultimaker ultimaker;
-	private UltimakerHardware ultimakerHardware;
-	private ControlP5 cp5;
+	private GuiContainer cp5;
 	private PGraphics pg;
 
 
@@ -50,35 +46,32 @@ final public class PrinterView
 	{
 		// Store references
 		this.app = app;
-		this.shape = shape;
-		this.ultimaker = ultimaker;
-		this.ultimakerHardware = ultimaker.getHardware();
 
 		// Create GUI layer
-		cp5 = new ControlP5(app);
+		cp5 = new GuiContainer(app);
 		cp5.setAutoDraw(false);
 
 		// Row 1
-		controlTemperature = new PrinterControlTemperature(cp5, ultimakerHardware, Style.PRINT_X + 20, Style.PRINT_Y + 20);
-		controlFan = new PrinterControlFan(cp5, ultimakerHardware, Style.PRINT_X + 180, Style.PRINT_Y + 20);
-		controlSpeed = new PrinterControlSpeed(cp5, ultimakerHardware, Style.PRINT_X + 360, Style.PRINT_Y + 20);
-		controlLayer = new PrinterControlLayer(cp5, ultimakerHardware, Style.PRINT_X + 620, Style.PRINT_Y + 20);
-		controlRetract = new PrinterControlRetract(cp5, ultimakerHardware, Style.PRINT_X + 1040, Style.PRINT_Y + 20);
+		controlTemperature = new PrinterControlTemperature(cp5, ultimaker.getHardware(), Style.PRINT_X + 20, Style.PRINT_Y + 20);
+		controlFan = new PrinterControlFan(cp5, ultimaker.getHardware(), Style.PRINT_X + 180, Style.PRINT_Y + 20);
+		controlSpeed = new PrinterControlSpeed(cp5, ultimaker.getHardware(), Style.PRINT_X + 360, Style.PRINT_Y + 20);
+		controlLayer = new PrinterControlLayer(cp5, ultimaker.getHardware(), Style.PRINT_X + 620, Style.PRINT_Y + 20);
+		controlRetract = new PrinterControlRetract(cp5, ultimaker.getHardware(), Style.PRINT_X + 1040, Style.PRINT_Y + 20);
 
 		// Row 2
-		controlStep = new PrinterControlStep(cp5, ultimakerHardware, Style.PRINT_X + 20, Style.PRINT_Y + 160);
-		controlFeedrate = new PrinterControlFeedrate(cp5, ultimakerHardware, Style.PRINT_X + 360, Style.PRINT_Y + 160);
-		controlAcceleleration = new PrinterControlAcceleration(cp5, ultimakerHardware, Style.PRINT_X + 700, Style.PRINT_Y + 160);
-		controlJerk = new PrinterControlJerk(cp5, ultimakerHardware, Style.PRINT_X + 1040, Style.PRINT_Y + 160);
+		controlStep = new PrinterControlStep(cp5, ultimaker.getHardware(), Style.PRINT_X + 20, Style.PRINT_Y + 160);
+		controlFeedrate = new PrinterControlFeedrate(cp5, ultimaker.getHardware(), Style.PRINT_X + 360, Style.PRINT_Y + 160);
+		controlAcceleleration = new PrinterControlAcceleration(cp5, ultimaker.getHardware(), Style.PRINT_X + 700, Style.PRINT_Y + 160);
+		controlJerk = new PrinterControlJerk(cp5, ultimaker.getHardware(), Style.PRINT_X + 1040, Style.PRINT_Y + 160);
 
 		// Row 3
-		graphPosition = new PrinterControlPosition(cp5, ultimakerHardware, Style.PRINT_X + 20, Style.PRINT_Y + 300);
+		graphPosition = new PrinterControlPosition(cp5, ultimaker.getHardware(), Style.PRINT_X + 20, Style.PRINT_Y + 300);
 		graphNozzle = new PrinterGraphNozzle(app, cp5, Style.PRINT_X + 240, Style.PRINT_Y + 300);
 		graphAcceleration = new PrinterGraphAcceleration(cp5, Style.PRINT_X + 480, Style.PRINT_Y + 300);
 
 		// Row 4
 		controlConnect = new PrinterControlConnect(cp5, Style.PRINT_X + 20, Style.PRINT_Y + 490);
-		graphPreview = new PrinterGraphPreview(app, shape, cp5, ultimakerHardware, Style.PRINT_X + 240, Style.PRINT_Y + 490);
+		graphPreview = new PrinterGraphPreview(app, shape, cp5, ultimaker.getHardware(), Style.PRINT_X + 240, Style.PRINT_Y + 490);
 		graphHistory = new PrinterGraphHistory(cp5, Style.PRINT_X + 830, Style.PRINT_Y + 490);
 
 		// Create new background
