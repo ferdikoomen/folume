@@ -22,12 +22,15 @@ The first thing to know is that 3D printers don't understand 3D models, instead 
 [example.gcode](examples/example.gcode)
 
 ## Requirements
-- [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Processing 3](https://processing.org)
-- [ControlP5](http://www.sojamo.de/libraries/controlP5/) (Install via Processing Contribution Manager)
 
-## Build
+## Run
 ```shell
-./build.sh
+./debug.sh
 ```
-JAR can be found in */build/artifacts/Folume.jar*
+
+## Release
+```shell
+./release.sh
+```

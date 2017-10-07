@@ -8,7 +8,6 @@ import processing.serial.Serial;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -48,7 +47,12 @@ final public class UltimakerConnection
 
 		// Connect to serial port
 		ports = Serial.list();
-		list = Arrays.asList(ports);
+		list = new ArrayList<>();
+        for (String port : ports) {
+            if (port.contains("usbmodem")) {
+                list.add(port);
+            }
+        }
 	}
 
 
@@ -123,7 +127,7 @@ final public class UltimakerConnection
 			try {
 				port = new Serial(app, name, 250000);
 			} catch (Exception e) {
-				// Ignore
+				// System.out.print(e.getStackTrace());
 			}
 		}
 	}

@@ -52,7 +52,7 @@ final public class PrinterControlConnect
 		resetButton = Gui.createButton(cp5, true, "RESET", offsetX, offsetY + 270, 80, 25);
 
 		// Add last since it needs to be on top
-		portsList = Gui.createDropdownList(cp5, true, "/dev/cu.usbmodem40131", offsetX, offsetY, 180, 20, 5);
+		portsList = Gui.createDropdownList(cp5, true, "NO PRINTER FOUND", offsetX, offsetY, 180, 20, 7);
 
 		// Set default text
 		durationField.setValue("00:00:00");

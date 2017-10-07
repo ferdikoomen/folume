@@ -4,21 +4,32 @@
 # Clean directory
 rm -r build
 mkdir build
+mkdir build/libs
+mkdir build/artifacts
 mkdir build/production
 mkdir build/production/data
-mkdir build/artifacts
 
 
 # Unzip dependency jars
-tar -zxf /Users/ferdi/Documents/Processing/libraries/controlP5/library/controlP5.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/core/library/core.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/core/library/gluegen-rt-natives-macosx-universal.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/core/library/gluegen-rt.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/core/library/jogl-all-natives-macosx-universal.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/core/library/jogl-all.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/serial.jar -C build/production/
-tar -zxf /Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/jssc.jar -C build/production/
 tar -zxf /Applications/Processing.app/Contents/Java/modes/java/libraries/net/library/net.jar -C build/production/
+
+
+# Download jSSC (Java Simple Serial Connector). This version fixes some connection issues
+curl -L -o build/libs/jSSC-2.7.0-Release.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/java-simple-serial-connector/jSSC-2.7.0-Release.zip
+tar -zxf build/libs/jSSC-2.7.0-Release.zip -C build/libs/
+tar -zxf build/libs/jSSC-2.7.0-Release/jssc.jar -C build/production/
+
+
+# Download ControlP5. This version fixes some retina issues
+curl -L -o build/libs/controlP5-2.2.6.zip https://github.com/sojamo/controlp5/releases/download/v2.2.6/controlP5-2.2.6.zip
+tar -zxf build/libs/controlP5-2.2.6.zip -C build/libs/
+tar -zxf build/libs/controlP5/library/controlP5.jar -C build/production/
 
 
 # Copy assets
@@ -39,7 +50,7 @@ cp -r src/META-INF/MANIFEST.MF build/production/META-INF/MANIFEST.MF
 
 
 # Compile JAVA to classes
-javac -sourcepath src -classpath "/Users/ferdi/Documents/Processing/libraries/controlP5/library/controlP5.jar:/Applications/Processing.app/Contents/Java/core/library/core.jar:/Applications/Processing.app/Contents/Java/core/library/gluegen-rt-natives-macosx-universal.jar:/Applications/Processing.app/Contents/Java/core/library/gluegen-rt.jar:/Applications/Processing.app/Contents/Java/core/library/jogl-all-natives-macosx-universal.jar:/Applications/Processing.app/Contents/Java/core/library/jogl-all.jar:/Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/serial.jar:/Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/jssc.jar:/Applications/Processing.app/Contents/Java/modes/java/libraries/net/library/net.jar" -d build/production/ src/com/madebyferdi/folume/Main.java
+javac -sourcepath src -classpath "build/libs/controlP5/library/controlP5.jar:build/libs/jSSC-2.7.0-Release/jssc.jar:/Applications/Processing.app/Contents/Java/core/library/core.jar:/Applications/Processing.app/Contents/Java/core/library/gluegen-rt-natives-macosx-universal.jar:/Applications/Processing.app/Contents/Java/core/library/gluegen-rt.jar:/Applications/Processing.app/Contents/Java/core/library/jogl-all-natives-macosx-universal.jar:/Applications/Processing.app/Contents/Java/core/library/jogl-all.jar:/Applications/Processing.app/Contents/Java/modes/java/libraries/serial/library/serial.jar:/Applications/Processing.app/Contents/Java/modes/java/libraries/net/library/net.jar" -d build/production/ src/com/madebyferdi/folume/Main.java
 
 
 # Create JAR

@@ -10,6 +10,7 @@ import com.madebyferdi.folume.ultimaker.state.UltimakerState;
 import com.madebyferdi.folume.utils.Maths;
 
 import java.awt.*;
+import java.util.List;
 
 final public class PrinterViewController
 {
@@ -116,7 +117,11 @@ final public class PrinterViewController
 		ultimakerConnection.onData(this::updateHistoryChart);
 
 		// Add available ports to list
-		view.getControlConnect().getPortsList().addItems(ultimakerConnection.getList());
+		List<String> ports = ultimakerConnection.getList();
+		if (!ports.isEmpty()) {
+			view.getControlConnect().getPortsList().addItems(ports);
+			view.getControlConnect().getPortsList().setCaptionLabel(ports.get(0));
+		}
 
 		// When the shape is updated we set the invalidation flag
 		// this will trigger a recalculation of the shape
