@@ -27,11 +27,11 @@ The first thing to know is that 3D printers don't understand 3D models, instead 
 - [Processing 3](https://processing.org)
 
 ## Run
-```shell
+```bash
 ./debug.sh
 ```
 
 ## Release
-```shell
+```bash
 ./release.sh
 ```
