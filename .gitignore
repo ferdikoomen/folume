@@ -1,6 +1,6 @@
+backup
 bin
 build
 .idea
-.vscode
 *.iml
-*.log
+*.sh
