@@ -1,6 +1,6 @@
 backup
 bin
 build
+update.sh
 .idea
 *.iml
-*.sh
